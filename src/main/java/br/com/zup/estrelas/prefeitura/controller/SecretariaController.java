@@ -24,15 +24,22 @@ import br.com.zup.estrelas.prefeitura.dto.SecretariaDTO;
 import br.com.zup.estrelas.prefeitura.entity.Secretaria;
 
 @RestController
+// FIXME: Quando vamos mapear um recurso
+// nós só utilizamos seu nome, no caso
+// aqui o ideal seria /secretarias, pois temos um
+// controller que vai gerenciar secretarias.
 @RequestMapping("/cadastrarSecretaria")
 public class SecretariaController {
 
+    //FIXME: Por que não foi criado um service pra secretaria?
 	@Autowired
 	private SecretariaRepository secretariaRepository;
 
 	@PostMapping
 	public ResponseEntity<SecretariaDTO> cadastrar(@RequestBody SecretariaForm form, UriComponentsBuilder uriBuilder) {
 
+	    //FIXME: Não foi implementada a regra de validar se já existe
+	    // uma secretaria na área recebida.
 		Secretaria secretaria = form.converter();
 		secretariaRepository.save(secretaria);
          
@@ -52,6 +59,8 @@ public class SecretariaController {
 
 	@PutMapping("/{idSecretaria}")
 	@Transactional
+	//FIXME: Pesquise o que significa o transactional e me mande no chat
+	//até o dia 24/11
 	public ResponseEntity<SecretariaDTO> alterar(@PathVariable Long idSecretaria,
 			@RequestBody @Valid SecretariaForm form) {
 		Secretaria secretaria = form.alterar(idSecretaria, secretariaRepository);

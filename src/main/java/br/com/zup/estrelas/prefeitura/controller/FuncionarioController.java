@@ -36,6 +36,7 @@ public class FuncionarioController {
 	
 	@GetMapping ("/{idFuncionario}")
 	public Funcionario consultaFuncionario (@PathVariable Long idFuncionario) {
+	    //FIXME: Essa consulta é desnecessária, está sendo feita 2x.
 		Funcionario funcionario = funcionarioService.consultaFuncionario(idFuncionario);
 		return funcionarioService.consultaFuncionario(idFuncionario);
 	}

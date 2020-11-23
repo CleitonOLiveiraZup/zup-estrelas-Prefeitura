@@ -38,8 +38,11 @@ public class Projeto {
 
 	@Column(nullable = false)
 	private LocalDate dataInicio;
-
-	@Column(nullable = false)
+	
+	//FIXME: Esse valor tem que ser true, pois a data de entrega
+	// pode ser nula, visto que ela só vai ser preenchida quando 
+	// o projeto for concluido.
+	@Column(nullable = true)
 	private LocalDate dataEntrega;
 
 	@Column(nullable = false)

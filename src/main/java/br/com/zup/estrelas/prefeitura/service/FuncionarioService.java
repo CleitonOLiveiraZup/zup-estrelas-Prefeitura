@@ -38,6 +38,8 @@ public class FuncionarioService implements IFuncionarioService {
 			return new MensagemDTO("Orcamento insulficiente");
 		}
 
+		//FIXME: Que tal criar um método privado que faz 
+		// essa correspondência dos dados.
 		Funcionario funcionario = new Funcionario(null, null, null, null, secretaria, null, null, null);
 
 		BeanUtils.copyProperties(funcionarioDto, funcionario);
@@ -67,6 +69,7 @@ public class FuncionarioService implements IFuncionarioService {
 		}
 
 		Funcionario funcionario = funcionarioConsultado.get();
+		// FIXME: Poderia se tornar um método para simplificar.
 		if (funcionarioDto.getIdSecretaria() != funcionario.getSecretaria().getIdSecretaria()) {
 
 			Optional<Secretaria> secretariaConsultada = secretariaRepository.findById(funcionarioDto.getIdSecretaria());
@@ -85,12 +88,16 @@ public class FuncionarioService implements IFuncionarioService {
 
 		}
 
+		//FIXME: Seria bom dar uma mensagem caso essa validação
+		//falhe.
 		if (funcionarioDto.getSalario() >= funcionario.getSalario()) {
 
 			if (funcionario.getSecretaria().getOrcamentoFolha() < funcionarioDto.getSalario()) {
 				return new MensagemDTO("Orcamento insulficiente");
 			}
 
+			// FIXME: Devemos sempre testar com o ifPresent ou usar um orElse 
+			// em objetos optional para que esses não sejam vazios.
 			Secretaria secretaria = secretariaRepository.findById(funcionarioDto.getIdSecretaria()).get();
 
 			funcionario.setNome(funcionarioDto.getNome());
