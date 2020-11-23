@@ -8,6 +8,8 @@ import br.com.zup.estrelas.prefeitura.enums.DepartamentoPrefeitura;
 
 public class SecretariaDTO {
 
+    //FIXME: Era importante que os projetos e funcionários fossem listados
+    // junto com as secretarias.
 	Long idSecretaria;
 
 	private double orcamentoProjetos;
@@ -35,6 +37,7 @@ public class SecretariaDTO {
 
 	public SecretariaDTO(Secretaria secretaria) {
 
+	    //FIXME: Falta o idSecretaria aqui.
 		this.orcamentoProjetos = secretaria.getOrcamentoProjetos();
 		this.orcamentoFolha = secretaria.getOrcamentoFolha();
 		this.area = secretaria.getArea();

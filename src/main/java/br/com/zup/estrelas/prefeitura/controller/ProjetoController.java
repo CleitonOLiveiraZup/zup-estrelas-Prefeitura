@@ -46,6 +46,8 @@ public class ProjetoController {
 		return projetoService.listaProjetos();
 	}
 	
+	//FIXME: Quando vamos mapear uma ação na URL, devemos passar o identificar do recurso 
+	// antes, aqui o ideal seria /{idProjeto}/conclusao
 	@PutMapping (path = "/conclusao/{idProjeto}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public MensagemDTO finalizaProjeto (@PathVariable Long idProjeto, @RequestBody DataFinalProjetoDTO dataFinalProjetoDto) {
 		return projetoService.finalizaProjeto(idProjeto, dataFinalProjetoDto);

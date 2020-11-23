@@ -28,13 +28,16 @@ public class ProjetoService implements IProjetoService {
 	public MensagemDTO adicionaProjeto(ProjetoDTO projetoDto) {
 
 		if (projetoRepository.findByNome(projetoDto.getNome()).isPresent()) {
+		    // FIXME: Crie constantes para as Strings literais.
 			return new MensagemDTO("Projeto já cadastrado");
 		}
 
 		Optional<Secretaria> secretariaConsultada = secretariaRepository.findById(projetoDto.getIdSecretaria());
+		//FIXME: Devemos sempre verificar com o isPresent antes de fazer o get.
 		Secretaria secretaria = secretariaConsultada.get();
 
 		if (secretaria.getOrcamentoProjetos() < projetoDto.getCusto()) {
+	        // FIXME: Crie constantes para as Strings literais.
 			return new MensagemDTO("orçamento insulficiente");
 		}
 
@@ -68,6 +71,7 @@ public class ProjetoService implements IProjetoService {
 
 		projetoRepository.save(projetoAlterado);
 
+        // FIXME: Crie constantes para as Strings literais.
 		return new MensagemDTO("O Projeto foi alterado com sucesso");
 	}
 
@@ -86,7 +90,7 @@ public class ProjetoService implements IProjetoService {
 		Projeto projeto = projetoConsultado.get();
 
 		if (projeto.getDataInicio().isAfter(dataFinal.getDataEntrega())) {
-
+		    //FIXME: Faltou retornar o erro aqui.
 		}
 
 		projeto.setDataEntrega(dataFinal.getDataEntrega());
